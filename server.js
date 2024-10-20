@@ -50,6 +50,11 @@ app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAY
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+app.get('/health', (req, res) => {
+  res.send('API is running...');
+});
+
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
