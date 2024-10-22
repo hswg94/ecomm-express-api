@@ -1,6 +1,3 @@
 #!/bin/bash
-# Change to the application directory
-cd /ecomm-express-api-main
-
-# Install application dependencies
-npm i
+cd /home/ec2-user/ecomm-express-api-main || { echo "Directory not found"; exit 1; }
+npm i || { echo "npm install failed"; exit 1; }
