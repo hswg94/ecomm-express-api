@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/ecomm-express-api-main
+    destination: /ecomm-express-api-main
 hooks:
   BeforeInstall:
     - location: /codedeploy_install.sh
