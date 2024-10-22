@@ -56,7 +56,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.send('API is running and healthy...');
 });
 
 app.use(notFound);

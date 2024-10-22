@@ -1,0 +1,21 @@
+# This AppSpec file used for AWS codedeploy
+version: 0.0
+os: linux
+
+# Files section: Defines the source and destination for files during deployment
+files:
+  # The source is the root of the application files in your repository
+  - source: /
+    # Destination is where the application files will be placed on the instance
+    destination: /ecomm-express-api-main
+
+# Hooks section: Defines actions that should be taken at various points in the deployment process
+hooks:
+  BeforeInstall:
+    - location: codedeploy_install.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: codedeploy_start.sh
+      timeout: 300
+      runas: root
