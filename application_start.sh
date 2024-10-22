@@ -13,5 +13,6 @@ export MONGO_URI
 export JWT_SECRET
 export PAYPAL_CLIENT_ID
 export PAYPAL_APP_SECRET
+
 cd /ecomm-express-api
 pm2 start npm --name "ecomm-express-api" -- run server -- --port 80 --host
