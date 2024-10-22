@@ -2,13 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /ecomm-express-api-main
+    destination: /ecomm-express-api
 hooks:
-  BeforeInstall:
-    - location: /codedeploy_install.sh
-      timeout: 180
-      runas: root
   AfterInstall:
-    - location: /codedeploy_start.sh
+    - location: codedeploy_start.sh
       timeout: 180
       runas: root
