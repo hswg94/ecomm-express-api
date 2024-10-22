@@ -15,4 +15,4 @@ export PAYPAL_CLIENT_ID
 export PAYPAL_APP_SECRET
 
 cd /ecomm-express-api
-npm run server -- --port 5000 --host
+npm run server -- --port 80 --host
