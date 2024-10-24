@@ -4,6 +4,12 @@ files:
   - source: /
     destination: /ecomm-express-api
 hooks:
+  #After Repo is copied to the Instance
+  ApplicationStop:
+    - location: application_stop.sh
+      timeout: 180
+      runas: root
+  #After Repo is copied to the Instance
   AfterInstall:
     - location: after_install.sh
       timeout: 180
