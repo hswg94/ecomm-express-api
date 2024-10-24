@@ -58,7 +58,7 @@ app.get('/health', (req, res) => {
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.get('/', (req, res) => {
-  res.send('API is running, test');
+  res.send('API is running, test aws pipeline');
 });
 
 app.use(notFound);
