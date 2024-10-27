@@ -36,10 +36,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Apply CORS middleware (if needed)
-// app.use(cors({
-//   origin: '', // Set this as the frontend domain
-//   credentials: true, // Include cookies and other credentials in the CORS request
-// }));
+app.use(cors({
+  origin: 'https://d13jzpc0acay84.cloudfront.net', // Set this as the frontend domain
+  credentials: true, // Include cookies and other credentials in the CORS request
+}));
 
 // Define routes
 app.use('/api/products', productRoutes);
