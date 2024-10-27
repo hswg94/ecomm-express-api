@@ -7,7 +7,7 @@ PAYPAL_APP_SECRET=$(aws secretsmanager get-secret-value --secret-id PAYPAL_APP_S
 
 # Set environmental variables
 export NODE_ENV=production
-export PORT=80
+export PORT=443
 export PAYPAL_API_URL=https://api-m.sandbox.paypal.com
 export MONGO_URI
 export JWT_SECRET
