@@ -37,7 +37,7 @@ app.use(cookieParser());
 
 // Apply CORS middleware (if needed)
 app.use(cors({
-  origin: '*', // Set this as the frontend domain
+  origin: 'https://api.hswg94.com', // Set this as the frontend domain
   credentials: true, // Include cookies and other credentials in the CORS request
 }));
 
