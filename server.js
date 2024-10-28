@@ -36,10 +36,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Apply CORS middleware (if needed)
-app.use(cors({
-  origin: 'https://ecomm.hswg94.com', // Set this as the frontend domain
-  credentials: true, // Include cookies and other credentials in the CORS request
-}));
+if (process.env.NODE_ENV == "production") {
+  app.use(cors({
+    origin: 'https://ecomm.hswg94.com', // Set this as the frontend domain
+    credentials: true, // Include cookies and other credentials in the CORS request
+  }));
+} else {
+  app.use(cors({
+    origin: 'http://localhost:3000', // Set this as the frontend domain
+    credentials: true, // Include cookies and other credentials in the CORS request
+  }));
+}
 
 // Define routes
 app.use('/api/products', productRoutes);
