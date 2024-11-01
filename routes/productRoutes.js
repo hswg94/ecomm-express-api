@@ -12,7 +12,9 @@ import { userAuth, adminAuth } from "../middleware/authMiddleware.js";
 import checkObjectId from "../middleware/checkObjectId.js";
 
 const router = express.Router();
-router.route("/").get(getAllProducts).post(userAuth, adminAuth, createProduct);
+router.route("/")
+  .get(getAllProducts)
+  .post(userAuth, adminAuth, createProduct);
 
 router.route("/top")
   .get(getTopProducts);
