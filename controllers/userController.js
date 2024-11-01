@@ -23,6 +23,7 @@ const userRegister = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isVendor: user.isVendor
     });
   }
 });
@@ -44,6 +45,7 @@ const userLogin = asyncHandler(async (req, res) => {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        isVendor: user.isVendor,
       });
     } else {
       res.status(401);
@@ -77,6 +79,7 @@ const userProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isVendor: user.isVendor
     });
   } else {
     res.status(401);
@@ -103,6 +106,7 @@ const userUpdate = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      isVendor: updatedUser.isVendor
     });
   } else {
     res.status(404);
@@ -162,7 +166,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     user.isAdmin = Boolean(req.body.isAdmin);
-
+    user.isVendor = Boolean(req.body.isVendor);
     const updatedUser = await user.save();
 
     res.json({
@@ -170,6 +174,7 @@ const updateUser = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      isVendor: updatedUser.isVendor,
     });
   } else {
     res.status(404);
