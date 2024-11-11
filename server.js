@@ -19,13 +19,12 @@ connectDB();
 const app = express();
 
 // Rate limiting
-const limiter = rateLimit({
+app.use(rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 100, // Limit 100 requests to each IP per windowMs
   standardHeaders: 'draft-7', // Uses combined RateLimit header
   legacyHeaders: false, // Disables legacy headers
-});
-app.use(limiter);
+}));
 
 // Security
 app.use(helmet({ contentSecurityPolicy: false }));
@@ -34,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Apply CORS middleware (if needed)
+// Apply CORS
 if (process.env.NODE_ENV == "production") {
   app.use(cors({
     origin: 'https://ecomm.hswg94.com', // Set this as the frontend domain
