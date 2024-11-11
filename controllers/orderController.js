@@ -14,10 +14,8 @@ const createOrder = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('No order items');
   } else {
-    // NOTE: here we must assume that the prices from our client are incorrect.
-    // We must only trust the price of the item as it exists in
-    // our DB. This prevents a user paying whatever they want by hacking our client
-    // side code - https://gist.github.com/bushblade/725780e6043eaf59415fbaf6ca7376ff
+    // We must only trust the price of the item as it exists in the DB.
+    // This prevents a user paying whatever they want by hacking their client
 
     // get the ordered items from our database
     const itemsFromDB = await Product.find({
@@ -99,8 +97,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
-    // check the correct amount was paid
-    const paidCorrectAmount = order.totalPrice.toString() === value;
+    // check the correct amount was paid, toFixed makes it 2 decimal places and a string which is correct since value is a string
+    const paidCorrectAmount = order.totalPrice.toFixed(2) === value;
     if (!paidCorrectAmount) throw new Error('Incorrect amount paid');
 
     order.isPaid = true;
