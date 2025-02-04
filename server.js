@@ -36,7 +36,7 @@ app.use(cookieParser());
 // Apply CORS
 if (process.env.NODE_ENV == "production") {
   app.use(cors({
-    origin: 'https://ecomm.hswg94.com', // Set this as the frontend domain
+    origin: ['https://ecomm.hswg94.com', 'https://www.ecomm.hswg94.com'], // Allow the frontend domain
     credentials: true, // Include cookies and other credentials in the CORS request
   }));
 } else {
