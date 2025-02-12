@@ -53,13 +53,13 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send({ clientId: process.env.PAYPAL_CLIENT_ID }));
 app.get('/health', (req, res) => {
-  res.send('The API Server is running...');
+  res.send('API Server is running...');
 });
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.get('/', (req, res) => {
-  res.send('The API Server is running...');
+  res.send('API Server is running...');
 });
 
 app.use(notFound);
