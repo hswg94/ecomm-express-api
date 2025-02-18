@@ -1,7 +1,10 @@
 import express from 'express';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv when environment is not production, in production it will cause error if try to import.
+if (process.env.NODE_ENV !== "production") {
+  import('dotenv').then((dotenv) => dotenv.config());
+}
+
 import cookieParser from 'cookie-parser';
-dotenv.config();
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
