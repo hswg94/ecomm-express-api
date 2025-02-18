@@ -20,6 +20,7 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 const app = express();
+app.set('trust proxy', 1 /* number of proxies between user and server */);
 
 // Rate limiting
 app.use(rateLimit({
@@ -60,6 +61,11 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
+
+// This is meant for troubleshootingthe IP address returned in the response.
+// If it matches your IP address then the number of proxies is correct and the rate limiter should now work correctly.
+// If not, then keep increasing the number in trust proxy until it does.
+app.get('/ip', (request, response) => response.send(request.ip))
 
 app.get('/', (req, res) => {
   res.send('API Server is running...');
