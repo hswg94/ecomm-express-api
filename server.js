@@ -20,6 +20,7 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 const app = express();
+//read https://express-rate-limit.mintlify.app/guides/troubleshooting-proxy-issues
 app.set('trust proxy', 1 /* number of proxies between user and server */);
 
 // Rate limiting
