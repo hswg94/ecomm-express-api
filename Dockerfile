@@ -16,6 +16,5 @@ COPY . .
 # Expose the port your app runs on
 EXPOSE 5000
 
-# Start the application and bind it to 0.0.0.0
-# CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
+# Start the application
 CMD ["npm", "run", "start"]
