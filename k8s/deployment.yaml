@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecomm-express-api
+  labels:
+    app: ecomm-express-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecomm-express-api
+  template:
+    metadata:
+      labels:
+        app: ecomm-express-api
+    spec:
+      containers:
+      - name: ecomm-express-api
+        image: hswg94/ecomm-express-api:latest
+        ports:
+        - containerPort: 5000
+        # define the resources for the container
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        # define environment variables for the container
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: "ecomm-config"
+              key: "NODE_ENV"
+        - name: PORT
+          valueFrom:
+              configMapKeyRef:
+                name: "ecomm-config"
+                key: "PORT"
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: MONGO_URI
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: JWT_SECRET
+        - name: PAYPAL_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: PAYPAL_CLIENT_ID
+        - name: PAYPAL_API_URL
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: PAYPAL_API_URL
+        - name: PAYPAL_APP_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: PAYPAL_APP_SECRET
+        - name: CLOUDINARY_CLOUD_NAME
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: CLOUDINARY_CLOUD_NAME
+        - name: CLOUDINARY_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: CLOUDINARY_API_KEY
+        - name: CLOUDINARY_API_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: ecomm-secrets
+              key: CLOUDINARY_API_SECRET

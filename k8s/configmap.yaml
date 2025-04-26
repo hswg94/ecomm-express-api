@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap # A ConfigMap is used to store non-confidential data in key-value pairs
+metadata:
+  name: ecomm-config # The name of the ConfigMap
+data:
+  NODE_ENV: "production"
+  PORT: "5000"
