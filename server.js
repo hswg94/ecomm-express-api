@@ -16,7 +16,7 @@ import ExpressMongoSanitize from 'express-mongo-sanitize';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 connectDB();
 const app = express();
