@@ -20,6 +20,7 @@ const port = process.env.PORT || 5000;
 
 connectDB();
 const app = express();
+
 //read https://express-rate-limit.mintlify.app/guides/troubleshooting-proxy-issues
 app.set('trust proxy', 1 /* number of proxies between user and server */);
 
@@ -41,12 +42,12 @@ app.use(cookieParser());
 // Apply CORS
 if (process.env.NODE_ENV == "production") {
   app.use(cors({
-    origin: ['https://ecomm.hswg94.com', 'https://www.ecomm.hswg94.com'], // Allow the frontend domain
+    origin: ['https://ecomm.hswg94.com', 'https://www.ecomm.hswg94.com'], // The frontend domain that is allowed to use this API server
     credentials: true, // Include cookies and other credentials in the CORS request
   }));
 } else {
   app.use(cors({
-    origin: 'http://localhost:3000', // Set this as the frontend domain
+    origin: 'http://localhost:3000', // The frontend domain that is allowed to use this API server
     credentials: true, // Include cookies and other credentials in the CORS request
   }));
 }
