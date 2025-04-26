@@ -7,7 +7,6 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "dev": "npm run start",
     "data:import": "node seeder.js",
     "data:destroy": "node seeder.js -d"
   },
