@@ -36,11 +36,11 @@ kubectl get services
 ```
 Use the external IP to access the application.
 
-#### 6. Clean Up Resources
+#### 6. Clean Up Resources (when you need)
 ```bash
-kubectl delete -f deployment.yaml
-kubectl delete -f service.yaml
-kubectl delete -f configmap.yaml
-kubectl delete -f secret.yaml
+kubectl delete -f k8s/deployment.yaml
+kubectl delete -f k8s/service.yaml
+kubectl delete -f k8s/configmap.yaml
+kubectl delete -f k8s/secret.yaml
 ```
 Removes the deployment, service, ConfigMap, and Secret from the cluster.
