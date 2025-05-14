@@ -1,34 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecomm-express-api
+  name: ecomm-express-api # name of the deployment
   labels:
-    app: ecomm-express-api
+    app: ecomm-express-api # labels for the deployment
 spec:
-  replicas: 2
+  replicas: 2 # number of replicas
   selector:
     matchLabels:
-      app: ecomm-express-api
+      app: ecomm-express-api # selector to identify the pods managed by this deployment
   template:
     metadata:
       labels:
-        app: ecomm-express-api
+
+        app: ecomm-express-api # labels for the pods
     spec:
-      containers:
+      containers: # list of containers in the pod
       - name: ecomm-express-api
         image: hswg94/ecomm-express-api:latest
         ports:
         - containerPort: 5000
-        # define the resources for the container
-        resources:
+        resources: # define the resources for the container
           requests:
             memory: "128Mi"
             cpu: "250m"
           limits:
             memory: "256Mi"
             cpu: "500m"
-        # define environment variables for the container
-        env:
+        env: # define environment variables for the container
         - name: NODE_ENV
           valueFrom:
             configMapKeyRef:
