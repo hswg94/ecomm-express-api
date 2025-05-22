@@ -10,11 +10,12 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
-import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import { notFound, errorHandler, csrfErrorHandler } from './middleware/errorMiddleware.js';
 import helmet from 'helmet';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
 import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
+import csurf from 'csurf'; // <-- Add this import
 
 const port = process.env.PORT;
 
@@ -38,6 +39,22 @@ app.use(ExpressMongoSanitize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// CSRF protection middleware (must come after cookieParser)
+app.use(
+  csurf({
+    cookie: {
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production",
+    },
+  })
+);
+
+// Endpoint to provide CSRF token to frontend
+app.get('/api/csrf-token', (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
 
 // Apply CORS
 if (process.env.NODE_ENV == "production") {
@@ -74,6 +91,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(notFound);
+app.use(csrfErrorHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {

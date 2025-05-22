@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 
-// User Authentication
+// Verify that a user is Authenticated
 const userAuth = asyncHandler(async (req, res, next) => {
   let token = req.cookies.jwt;
   if (token) {
@@ -20,7 +20,7 @@ const userAuth = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Admin Authorization
+// Verify that a user is Authorized and is an Admin or Vendor
 
 const adminAuth = asyncHandler(async (req, res, next) => {
     if (req.user && (req.user.isAdmin || req.user.isVendor)) {
