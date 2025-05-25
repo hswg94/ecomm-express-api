@@ -1,4 +1,6 @@
 #!/bin/bash
+set -x  #enables debug mode, which causes each command to be printed to the terminal before it is executed.
+
 # Retrieve secrets from Secrets Manager
 MONGO_URI=$(aws secretsmanager get-secret-value --secret-id ECOMM --query SecretString --output text | jq -r .MONGO_URI)
 JWT_SECRET=$(aws secretsmanager get-secret-value --secret-id ECOMM --query SecretString --output text | jq -r .JWT_SECRET)
