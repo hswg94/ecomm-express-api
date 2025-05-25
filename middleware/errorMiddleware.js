@@ -1,5 +1,7 @@
 const notFound = (req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
+  // Log the requester's IP address
+  console.log(`Not Found: ${req.originalUrl} | IP: ${req.ip}`);
   res.status(404);
   next(error); //this looks for a function with the err parameter
 };
