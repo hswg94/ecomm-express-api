@@ -9,8 +9,7 @@ CLOUDINARY_CLOUD_NAME=$(aws secretsmanager get-secret-value --secret-id ECOMM --
 CLOUDINARY_API_KEY=$(aws secretsmanager get-secret-value --secret-id ECOMM --query SecretString --output text | jq -r .CLOUDINARY_API_KEY)
 CLOUDINARY_API_SECRET=$(aws secretsmanager get-secret-value --secret-id ECOMM --query SecretString --output text | jq -r .CLOUDINARY_API_SECRET)
 
-set -x  #enables debug mode, which causes each command to be printed to the terminal before it is executed, do not use for sensitive data.
-# Set environmental variables
+set -x  #enables debug mode, which causes each command to be printed to the terminal
 export NODE_ENV=production
 export PORT=80
 export PAYPAL_API_URL=https://api-m.sandbox.paypal.com
